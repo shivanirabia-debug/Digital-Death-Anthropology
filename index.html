@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Digital Death</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;0,900;1,500&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root{--bg:#f4ebde;--ink:#1b1b30;--cream:#fff7e6;--yel:#f5b52b;--teal:#1a7068;--red:#d9442b;--mut:#6b6b7a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+        @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12121f;--ink:#f4ebde;--mut:#a0a0b0}}
+        :root[data-theme="dark"]{--bg:#12121f;--ink:#f4ebde;--mut:#a0a0b0}
+        *{box-sizing:border-box}
+        body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif}
+        .w{max-width:960px;margin:0 auto;padding:20px 18px 32px}
+        .top{display:flex;justify-content:space-between;gap:8px;font-size:10px;letter-spacing:.18em;font-weight:600}
+        h1{font:900 clamp(48px,13vw,120px)/1 Fraunces,Georgia,serif;margin:14px 0 6px}
+        .sub{font:italic 500 clamp(17px,3.5vw,26px) Fraunces,Georgia,serif;margin:0 0 18px}
+        .hero{position:relative;height:340px;border-radius:18px;overflow:hidden}
+        .sun{position:absolute;left:50%;top:20px;width:280px;height:280px;margin-left:-140px;border-radius:50%;background:var(--yel)}
+        .hill{position:absolute;left:0;right:0;bottom:0;height:90px;background:var(--teal);border-radius:50% 50% 0 0/30px 30px 0 0}
+        .phone{position:absolute;left:50%;top:12px;width:190px;height:316px;margin-left:-95px;background:#1b1b30;border-radius:24px;padding:9px}
+        .scr{background:var(--cream);height:100%;border-radius:16px;color:#1b1b30;padding:12px 8px;text-align:center;font-size:10px;letter-spacing:.1em;position:relative;transition:background .6s}
+        .lit .scr{background:#fff0c8}
+        .pill{display:inline-block;background:#1b1b30;color:#fff;border-radius:14px;padding:5px 10px;margin:8px 0 2px;font-size:10px;letter-spacing:0}
+        #fig{width:100%;height:150px;display:block}
+        .p{animation:dr 3s ease-in infinite}
+        @keyframes dr{0%{transform:translate(0,0);opacity:1}100%{transform:translate(14px,-12px);opacity:0}}
+        .cb{position:absolute;left:50%;bottom:30px;margin-left:-28px;width:56px;height:70px;background:none;border:0;cursor:pointer;padding:0}
+        .can{position:absolute;left:21px;bottom:0;width:14px;height:34px;background:#fff;border:2px solid #1b1b30;border-radius:2px}
+        .can:before{content:"";position:absolute;left:1px;top:-20px;width:8px;height:15px;background:var(--yel);border-radius:50% 50% 50% 50%/70% 70% 30% 30%;opacity:0;transition:.4s;box-shadow:0 0 18px 8px rgba(245,181,43,.65);animation:fl 1s infinite alternate}
+        .lit .can:before{opacity:1}
+        @keyframes fl{to{transform:scale(1.15,.9)}}
+        .cb:not(.x){animation:pu 1.8s infinite;border-radius:50%}
+        .lit .cb{animation:none}
+        @keyframes pu{50%{box-shadow:0 0 0 10px rgba(245,181,43,.45)}}
+        #hint{position:absolute;left:0;right:0;bottom:8px;font:italic 500 12px Fraunces,Georgia,serif;letter-spacing:0}
+        .b{position:absolute;font:italic 700 17px Fraunces,Georgia,serif;padding:8px 14px;border-radius:18px}
+        .b1{left:3%;top:110px;background:var(--cream);color:#1b1b30;border:2px solid #1b1b30}
+        .b2{right:3%;top:190px;background:var(--teal);color:#fff;opacity:.35;transition:opacity .8s}
+        .lit .b2{opacity:1}
+        .b3{right:3%;top:40px;background:#1b1b30;color:#fff;font-size:15px}
+        .tip{font-size:12px;color:var(--mut);margin:14px 0 0;text-align:center}
+        .g{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:10px 0 20px}
+        .c{border:2px solid #1b1b30;border-radius:14px;padding:16px;display:flex;flex-direction:column;box-shadow:4px 4px 0 #1b1b30;color:#1b1b30;background:var(--cream);cursor:pointer;transition:transform .15s;text-align:left;font:inherit}
+        .c:active{transform:translate(3px,3px);box-shadow:1px 1px 0 #1b1b30}
+        .c.y{background:var(--yel)}.c.d{background:#1b1b30;color:#fff}
+        .c small{font-size:9px;letter-spacing:.14em;font-weight:600}
+        .n{display:inline-block;width:26px;height:26px;border-radius:50%;color:#fff;text-align:center;line-height:26px;font:700 12px Fraunces,serif;margin-right:6px}
+        .c h3{font:700 22px/1.1 Fraunces,Georgia,serif;margin:12px 0 8px}
+        .c p{font-size:13px;line-height:1.45;margin:0 0 12px;flex:1}
+        .c.f p{font:italic 500 16px/1.4 Fraunces,Georgia,serif}
+        .t{background:#1b1b30;color:#fff;border-radius:8px;padding:9px 11px;font-size:12px;font-weight:600}
+        .d .t{background:var(--yel);color:#1b1b30}
+        .arg{background:#1b1b30;color:#fff;border-radius:18px;padding:22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+        .arg small{color:var(--yel);letter-spacing:.14em;font-weight:600;font-size:10px}
+        .arg p{font:500 20px/1.3 Fraunces,Georgia,serif;margin:8px 0 0}
+        .team{margin-top:20px}
+        .team h2{font:700 12px Inter;letter-spacing:.18em;margin:0 0 10px}
+        .tg{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+        .m{background:var(--cream);color:#1b1b30;border-radius:12px;padding:12px 14px;border-left:6px solid var(--teal)}
+        .m b{display:block;font:700 17px Fraunces,Georgia,serif}.m span{font-size:12px;color:#555}
+        .src{font-size:10px;color:var(--mut);margin-top:16px;line-height:1.5}
+    </style>
+</head>
+<body>
+<div class="w">
+    <div class="top"><span>ANTHROPOLOGY PRESENTATION</span><span>DEATH, MEMORY AND TECHNOLOGY</span></div>
+    <h1>Digital Death</h1>
+    <p class="sub">How cultures mourn, remember, and resurrect the dead online</p>
+
+    <div class="hero" id="hero">
+        <div class="sun"></div><div class="hill"></div>
+        <div class="phone"><div class="scr">REMEMBERING NANA<br><span class="pill">Happy birthday up there</span>
+            <svg id="fig" viewBox="0 0 160 120"></svg>
+            <button class="cb" id="cb" aria-label="Light a candle"><div class="can"></div></button>
+            <div id="hint">Tap the candle</div></div></div>
+        <div class="b b1">I miss you</div><div class="b b3">3 years ago today</div><div class="b b2">I’m still here.</div>
+    </div>
+    <p class="tip">Tap the candle to remember. Tap a card to reveal a question.</p>
+
+    <div class="g">
+        <button class="c" data-q="What ritual did your family follow after a death, and what did it mean?"><div><span class="n" style="background:var(--red)">01</span><small>FOUNDATIONS</small></div><h3>Death is a process, not a moment</h3><p>Among the Dayak of Borneo, Hertz found that a second burial ends both the dead person’s journey and the mourners’ grief. Van Gennep: separation, liminality, incorporation.</p><div class="t">Continuing bonds: the dead stay in the community</div></button>
+        <button class="c" data-q="Could a funeral on Zoom ever feel complete to you? What would be missing?"><div><span class="n" style="background:var(--teal)">02</span><small>COVID-19</small></div><h3>The funeral moved to Zoom</h3><p>Lockdowns pushed funerals onto Zoom, YouTube and Facebook Live. Distant relatives could finally attend, but touch, shared food and moving together were lost.</p><div class="t">Many families felt their grief was unfinished</div></button>
+        <button class="c y" data-q="Would a griefbot comfort you, or keep you stuck in the past?"><div><span class="n" style="background:#1b1b30">03</span><small>AI AND GRIEFBOTS</small></div><h3>Talking to the dead, on demand</h3><p>Chatbots, voice clones and animated photos are built from a person’s messages and posts. Replika began as a bot made from a late friend’s texts.</p><div class="t" style="color:var(--yel)">Ancestor worship in a new form, or a product?</div></button>
+        <button class="c d" data-q="Should the dead have privacy rights, and who should speak for them?"><div><span class="n" style="background:var(--yel);color:#1b1b30">04</span><small>ETHICS AND LAW</small></div><h3>Who owns the data of the dead?</h3><p>A 2018 German ruling let parents into their dead daughter’s Facebook, but the GDPR does not protect the dead. Joshua Barbeau simulated his late fiancée with GPT-3, without her consent.</p><div class="t">Questions about the dead are questions of power</div></button>
+    </div>
+
+    <div class="arg">
+        <div><small>CENTRAL ARGUMENT</small><p>Technology reshapes how we mourn, but through existing cultural frameworks, not by erasing them.</p></div>
+        <div><small>FOR DISCUSSION</small><p><i>Would you want a digital version of yourself to exist after you die, and who should control it?</i></p></div>
+    </div>
+
+    <div class="team"><h2>PRESENTED BY</h2>
+        <div class="tg">
+            <div class="m"><b>Rabia</b><span>26k-3050</span></div>
+            <div class="m"><b>Rabeea Sultan</b><span>26k-3054</span></div>
+            <div class="m"><b>Anzeela Ishtiaq</b><span>26k-3038</span></div>
+            <div class="m"><b>Meerab Jee</b><span>26k-3043</span></div>
+        </div></div>
+
+    <p class="src">Sources named: Hertz (1907); van Gennep (1909); Turner; Hollanek and Nowaczyk-Basińska, University of Cambridge (2024); Öhman and Watson, Oxford Internet Institute (2019). Laws on digital remains change quickly, so verify any rule before citing it.</p>
+</div>
+<script>
+    (function(){
+        var fig=document.getElementById('fig'),h='',seed=11,x,y,t,r,k;
+        function rnd(){seed=(seed*1103515245+12345)&0x7fffffff;return seed/0x7fffffff;}
+        for(y=6;y<=116;y+=5)for(x=14;x<=146;x+=5){
+            if((x-80)*(x-80)+(y-38)*(y-38)<=26*26||(Math.pow((x-80)/56,2)+Math.pow((y-112)/36,2)<=1&&y<=112)){
+                t=Math.max(0,(x-92)/50);if(rnd()<t*.8)continue;
+                h+='<circle cx="'+x+'" cy="'+y+'" r="'+(2.3*(1-.8*t)).toFixed(2)+'" fill="#1b1b30"/>';
+            }}
+        var cols=['#f5b52b','#d9442b','#1b1b30','#1a7068'];
+        for(k=0;k<40;k++){h+='<rect class="p" style="animation-delay:'+(rnd()*3).toFixed(2)+'s" x="'+(96+rnd()*50).toFixed(1)+'" y="'+(10+rnd()*95).toFixed(1)+'" width="'+(1.5+rnd()*2).toFixed(1)+'" height="'+(1.5+rnd()*2).toFixed(1)+'" fill="'+cols[k%4]+'"/>';}
+        fig.innerHTML=h;
+        var hero=document.getElementById('hero'),hint=document.getElementById('hint');
+        document.getElementById('cb').onclick=function(){
+            var on=hero.classList.toggle('lit');
+            hint.textContent=on?'Say their name quietly…':'Tap the candle';
+        };
+        var cards=document.querySelectorAll('.c');
+        cards.forEach(function(c){
+            var p=c.querySelector('p'),orig=p.textContent;
+            c.onclick=function(){
+                var f=c.classList.toggle('f');
+                p.textContent=f?c.getAttribute('data-q'):orig;
+            };
+        });
+    })();
+</script>
+</body>
+</html>
